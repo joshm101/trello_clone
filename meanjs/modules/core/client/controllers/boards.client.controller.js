@@ -4,16 +4,16 @@
   angular
     .module('core', ['ngMaterial'])
 
-    .controller('BoardsController', ['$scope', '$mdDialog', '$mdSidenav', function($scope, $mdDialog, $mdSidenav){
+    .controller('BoardsController', ['$scope', '$mdDialog', '$mdSidenav', function($scope, $mdDialog, $mdSidenav) {
       function buildToggler(navID) {
         return function() {
           // Component lookup should always be available since we are not using `ng-if`
           $mdSidenav(navID)
-            .toggle()
-        }
+            .toggle();
+        };
       }
 
-      $scope.isOpenRight = function(){
+      $scope.isOpenRight = function() {
         return $mdSidenav('right').isOpen();
       };
 
@@ -33,12 +33,8 @@
           });
       };
     });
-
-
-
   /*
   BoardsController.$inject = ['$scope', '$state', '$mdDialog', '$mdSidenav', 'Authentication', 'menuService'];
-
   function BoardsController($scope, $mdDialog, $mdSidenav) {
     var vm = this;
 

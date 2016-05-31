@@ -15,7 +15,7 @@
   function registerModule(moduleName, dependencies) {
     // Create angular module
     angular.module(moduleName, dependencies || [])
-      .config(function($mdThemingProvider){
+      .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
           .primaryPalette('teal')
           .accentPalette('light-blue', {
