@@ -6,7 +6,7 @@
     <h3 class="col-md-12 text-center">Or sign up using your email</h3>
   </div>
   <div layout="row" layout-align="center">
-    <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" flex="60">
+    <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" flex="90">
      <!-- <md-card md-whiteframe="3"> -->
         <fieldset style="border-width: 0px !important;">
           <md-input-container class="md-block" flex-gt-sm>
@@ -52,7 +52,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <div class="form-group" show-errors>
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" uib-popover-trigger="focus" password-validator required>
+              <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password"  password-validator required>
               <md-card>
                 <div ng-messages="vm.userForm.password.$error" role="alert">
                   <p class="help-block error-text" ng-message="required">Password is required.</p>

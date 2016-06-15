@@ -1,23 +1,32 @@
 <section>
-  <div layout="row" layout-xs="row" layout-align="center">
-    <h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
-  </div>
 
-  <div layout="row" layout-align="center" layout-align-xs="center">
-    <div layout-xs="column" layout-sm="column" layout-align-xs="center" layout-align-sm="center">
+    <div style="height: 100%;" flex="100" layout-align="center center">
 
-      <img ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png">
-      <img ng-click="vm.callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png">
-    </div>
-    <div layout-xs="column" layout-sm="column" layout-align-xs="center" layout-align-sm="center">
-      <img ng-click="vm.callOauthProvider('/api/auth/google')" ng-src="/modules/users/client/img/buttons/google.png">
-      <img ng-click="vm.callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/linkedin.png">
-    </div>
-    <div layout-xs="column" layout-sm="column" layout-align-xs="center" layout-align-sm="center">
-      <img ng-click="vm.callOauthProvider('/api/auth/github')" ng-src="/modules/users/client/img/buttons/github.png">
-      <img ng-click="vm.callOauthProvider('/api/auth/paypal')"  ng-src="/modules/users/client/img/buttons/paypal.png">
-    </div>
-  </div>
+      <div layout="row" layout-xs="row" layout-align="center center">
+        <h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
+      </div>
 
-  <div ui-view></div>
+      <div layout="row" flex="100" layout-align="center center" layout-align-xs="center">
+        <div layout-xs="column" layout-sm="column" layout-align-xs="center center" layout-align-sm="center center">
+
+          <img ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png">
+          <img ng-click="vm.callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png">
+        </div>
+        <div layout-xs="column" layout-sm="column" layout-align-xs="center center" layout-align-sm="center center">
+          <img ng-click="vm.callOauthProvider('/api/auth/google')" ng-src="/modules/users/client/img/buttons/google.png">
+          <img ng-click="vm.callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/linkedin.png">
+        </div>
+        <div layout-xs="column" layout-sm="column" layout-align-xs="center center" layout-align-sm="center center">
+          <img ng-click="vm.callOauthProvider('/api/auth/github')" ng-src="/modules/users/client/img/buttons/github.png">
+          <img ng-click="vm.callOauthProvider('/api/auth/paypal')"  ng-src="/modules/users/client/img/buttons/paypal.png">
+        </div>
+      </div>
+
+      <div ui-view></div>
+
+    </div>
+
+
+
+
 </section>
