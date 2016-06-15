@@ -5,8 +5,7 @@ module.exports = {
     lib: {
       css: [
         // bower:css
-        'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+
         'public/lib/angular-material/angular-material.css'
         // endbower
       ],

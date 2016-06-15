@@ -17,10 +17,10 @@
     angular.module(moduleName, dependencies || [])
       .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-          .primaryPalette('teal')
-          .accentPalette('light-blue', {
-            'default': '600'
-          });
+          .primaryPalette('green', {
+            default: '500'
+          })
+          .accentPalette('brown');
       });
 
     // Add the module to the AngularJS configuration file
