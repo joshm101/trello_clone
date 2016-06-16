@@ -1,34 +1,68 @@
-<div>
-  <h3 class="col-md-12 text-center">Or with your account</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
-    <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="Username" lowercase required>
-          <div ng-messages="vm.userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
+<div style="height: 100%;">
+
+    <div style="height: 100%;" layout="row" layout-align="center center">
+      <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" flex="70">
+        <md-card md-whiteframe="3">
+          <div layout="row" layout-align="center center">
+            <h3 class="col-md-12 text-center">Sign In</h3>
           </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Password" required>
-          <div ng-messages="vm.userForm.password.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Password is required.</p>
-          </div>
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-          &nbsp; or&nbsp;
-          <a ui-sref="authentication.signup">Sign up</a>
-        </div>
-        <div class="text-center forgot-password">
-          <a ui-sref="password.forgot">Forgot your password?</a>
-        </div>
-        <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
-          <span ng-bind="vm.error"></span>
-        </uib-alert>
-      </fieldset>
-    </form>
-  </div>
+
+          <fieldset style="border-width: 0px !important;">
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <div class="form-group" show-errors>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" lowercase required>
+                <div ng-messages="vm.userForm.username.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">Username is required.</p>
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <div class="form-group" show-errors>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password"  password-validator required>
+                <md-card>
+                  <div ng-messages="vm.userForm.password.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Password is required.</p>
+
+                    <div ng-repeat="passwordError in passwordErrors">
+                      <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
+                    </div>
+
+
+                  </div>
+                </md-card>
+
+              </div>
+            </md-input-container>
+            <div class="text-center form-group">
+              <div layout="row" layout-align="center center">
+                    <md-button type="submit"  class="md-raised md-primary">Sign in</md-button>
+
+
+              </div>
+
+              <div layout="row" >
+                <div flex="50" layout="column" layout-align="center start">
+                  <div class="text-center forgot-password">
+                    <a ui-sref="password.forgot">Forgot your password?</a>
+                  </div>
+                </div>
+                <div flex="50" layout="column" layout-align="end end">
+                  <md-button class="md-accent"  ui-sref="authentication.signup">Sign up</md-button>
+                </div>
+
+              </div>
+            </div>
+
+            <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+              <span ng-bind="vm.error"></span>
+            </uib-alert>
+          </fieldset>
+        </md-card>
+
+      </form>
+    </div>
+
 </div>
