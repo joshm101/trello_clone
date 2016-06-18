@@ -1,5 +1,5 @@
 
-<div class="board-page-div" ng-app="core" ng-controller="BoardsController" layout-fill>
+<div class="board-page-div" ng-app="boards" ng-controller="BoardsController" ng-init="getBoards()" layout-fill>
     <md-content>
       <boards-toolbar></boards-toolbar>
           <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
@@ -7,19 +7,18 @@
               <h1 class="md-toolbar-tools">Add Board</h1>
             </md-toolbar>
             <md-content ng-controller="RightCtrl" layout-padding>
-              <form>
+              <form ng-submit="createBoard()">
                 <md-input-container>
                   <label for="testInput">Test input</label>
-                  <input type="text" id="testInput"
-                         ng-model="data" md-autofocus>
+                  <input ng-model="boardName" type="text" id="testInput" md-autofocus>
                 </md-input-container>
               </form>
-              <md-button ng-click="close()" class="md-primary">
+              <md-button type="submit" ng-click="close()" class="md-primary">
                 Create
               </md-button>
             </md-content>
           </md-sidenav>
-
+      <boards-list>ddd</boards-list>
     </md-content>
 
 

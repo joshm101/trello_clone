@@ -17,8 +17,6 @@ exports.renderIndex = function (req, res) {
       roles: req.user.roles,
       profileImageURL: req.user.profileImageURL,
       email: validator.escape(req.user.email),
-      lastName: validator.escape(req.user.lastName),
-      firstName: validator.escape(req.user.firstName),
       additionalProvidersData: req.user.additionalProvidersData
     };
   }
@@ -32,7 +30,7 @@ exports.renderIndex = function (req, res) {
  * Render the boards page
  */
 exports.renderBoards = function (req, res) {
-  res.render('modules/core/serer/views/boards');
+  res.render('modules/core/server/views/boards');
 };
 
 /**

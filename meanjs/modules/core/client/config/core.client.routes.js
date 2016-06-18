@@ -35,7 +35,7 @@
       })
       .state('boards', {
         url: '/boards',
-        templateUrl: 'modules/core/client/views/boards.client.view.html',
+        templateUrl: 'modules/boards/client/views/boards.client.view.html',
         controller: 'BoardsController',
         controllerAs: 'vm'
       })
