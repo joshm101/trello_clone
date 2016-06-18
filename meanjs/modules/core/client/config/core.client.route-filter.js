@@ -46,6 +46,7 @@
     function storePreviousState(state, params) {
       // only store this state if it shouldn't be ignored
       if (!state.data || !state.data.ignoreState) {
+        console.log("setting state.previous!");
         $state.previous = {
           state: state,
           params: params,

@@ -5,9 +5,9 @@
     .module('users')
     .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
+  AuthenticationController.$inject = ['$scope', '$state', '$stateParams', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
 
-  function AuthenticationController($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+  function AuthenticationController($scope, $state, $stateParams, $http, $location, $window, Authentication, PasswordValidator) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -37,8 +37,16 @@
         // If successful we assign the response to the global user model
         vm.authentication.user = response;
 
-        // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        console.log("state is: ", $state);
+
+        console.log("$state.previous is: ", $state.previous);
+
+        if (typeof $state.previous !== 'undefined') {
+          $state.go($state.previous.state.name, $state.previous.params);
+        } else {
+          $state.go('home');
+        }
+
       }).error(function (response) {
         vm.error = response.message;
       });
@@ -57,8 +65,12 @@
         // If successful we assign the response to the global user model
         vm.authentication.user = response;
 
-        // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        if (typeof $state.previous !== 'undefined') {
+          $state.go($state.previous.state.name, $state.previous.params);
+        } else {
+          $state.go('home');
+        }
+
       }).error(function (response) {
         vm.error = response.message;
       });
