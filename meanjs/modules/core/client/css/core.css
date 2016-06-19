@@ -51,7 +51,7 @@ md-content{
 }
 
 .boards-page-toolbar{
-
+  text-align: center;
 }
 
 .add-board-btn{
@@ -59,7 +59,7 @@ md-content{
 }
 
 .toolbar-title{
-  margin-left: 50% !important;
+
 }
 
 

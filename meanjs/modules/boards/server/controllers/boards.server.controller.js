@@ -23,10 +23,9 @@ exports.createBoard = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log("successfully saved board!");
-      return res.status(200).send({
-        message: "board created!"
-      });
+      console.log("successfully saved board! ", board);
+      res.boardSubmitted = board;
+      return res.status(200).send(board);
     }
   });
 };

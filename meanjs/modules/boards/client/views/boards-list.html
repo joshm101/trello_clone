@@ -1,2 +1,21 @@
-<div>
+<div class="boards-container" layout="row" layout-align="center center">
+  <div class="boards-wrapper"  layout-gt-sm="row" layout-align="start center" layout-wrap>
+    <div class="single-board" ng-repeat="board in boards" layout-gt-sm="column" layout-sm="row">
+      <div flex>
+        <md-card>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">
+                {{board.name}}
+              </span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            d
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
 </div>

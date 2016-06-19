@@ -1,0 +1,23 @@
+.boards-container{
+   width: 79%;
+   margin-left: 9.8%;
+
+   align-content: center !important;
+   // margin-left: 11.1%;
+
+
+}
+
+.list-boards{
+
+   align-content: center !important;
+   margin-left: 4%;
+   display: block;
+}
+
+.single-board{
+   align-content: center !important;
+   min-width: 31.6%;
+}
+
+

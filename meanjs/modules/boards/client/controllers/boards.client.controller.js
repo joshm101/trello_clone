@@ -5,6 +5,7 @@
     .controller('BoardsController', BoardsController)
     .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
       $scope.boardName = '';
+      // $scope.boards = '';
       $scope.close = function () {
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav('right').close()
@@ -12,8 +13,11 @@
             $log.debug("close RIGHT is done");
             console.log("$scope.boardName: ", $scope.boardName);
             if ($scope.boardName.length > 0) {
-              $http.post('/api/boards/create', { name: $scope.boardName } ).success(function (err, res) {
-
+              $http.post('/api/boards/create', { name: $scope.boardName } ).success(function (board, res) {
+                $scope.boardName = '';
+                console.log("response is: ", board);
+                console.log("$scope.boards: ", $scope.boards);
+                $scope.boards.push(board);
               });
             }
           });
@@ -35,6 +39,8 @@
         console.log("logged in");
         $http.get('/api/boards/get_boards', vm.user).then(function (response) {
           console.log("response: ", response);
+          $scope.boards = response.data;
+          console.log("$scope.boards: ", $scope.boards);
         });
       }
       // $http.get('/api/boards/get_boards')

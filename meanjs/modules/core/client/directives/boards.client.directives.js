@@ -8,7 +8,7 @@
     var directive = {
       restrict: 'E',
       transclude: true,
-      templateUrl: 'modules/core/client/views/boards-toolbar.html'
+      templateUrl: 'modules/boards/client/views/boards-toolbar.html'
     };
     return directive;
   }
