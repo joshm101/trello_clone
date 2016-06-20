@@ -1,19 +1,20 @@
-<div class="boards-container" layout="row" layout-align="center center">
-  <div class="boards-wrapper"  layout-gt-sm="row" layout-align="start center" layout-wrap>
-    <div class="single-board" ng-repeat="board in boards" layout-gt-sm="column" layout-sm="row">
-      <div flex>
-        <md-card>
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">
-                {{board.name}}
-              </span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            d
-          </md-card-actions>
-        </md-card>
+<div class="boards-container" layout-align="center center" style="min-height: 400px;">
+  <div class="boards-wrapper" layout="row" layout-align="center center" style="min-height: 400px;" layout-wrap flex="100">
+
+    <div class="single-row" ng-repeat="row in rows" layout-gt-sm="row" layout-gt-xs="row"  layout-align="start center" flex="80">
+      <div class="single-board" ng-repeat="board in row">
+        <div  flex>
+          <md-card class="md-card-single-board">
+              <div class="single-board-title">
+                <span class="md-title">
+                  {{board.name}}
+                </span>
+              </div>
+            <md-card-actions layout="row" layout-align="end center">
+              d
+            </md-card-actions>
+          </md-card>
+        </div>
       </div>
     </div>
   </div>
