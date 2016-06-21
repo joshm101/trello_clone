@@ -1,23 +1,26 @@
 
-<div class="board-page-div" ng-app="boards" ng-controller="BoardsController" ng-init="getBoards()" layout-fill>
+<div class="board-page-div" ng-app="boards" ng-controller="BoardsController as ctrl" ng-init="getBoards()" layout-fill>
     <md-content>
       <boards-toolbar></boards-toolbar>
-          <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-            <md-toolbar class="md-theme-light">
-              <h1 class="md-toolbar-tools">Add Board</h1>
-            </md-toolbar>
-            <md-content ng-controller="RightCtrl" layout-padding>
-              <form ng-submit="createBoard()">
-                <md-input-container>
-                  <label for="testInput">Test input</label>
-                  <input ng-model="boardName" type="text" id="testInput" md-autofocus>
-                </md-input-container>
-              </form>
-              <md-button type="submit" ng-click="close()" class="md-primary">
-                Create
-              </md-button>
-            </md-content>
-          </md-sidenav>
+          <div >
+            <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+              <md-toolbar class="md-theme-light">
+                <h1 class="md-toolbar-tools">Add Board</h1>
+              </md-toolbar>
+              <md-content layout-padding>
+                <form ng-submit="createBoard()">
+                  <md-input-container>
+                    <label for="testInput">Test input</label>
+                    <input ng-model="boardName" type="text" id="testInput" md-autofocus>
+                  </md-input-container>
+                </form>
+                <md-button type="submit" ng-click="close()" class="md-primary">
+                  Create
+                </md-button>
+              </md-content>
+            </md-sidenav>
+          </div>
+
       <boards-list class="list-boards" style="min-height: 400px;"></boards-list>
     </md-content>
 </div>

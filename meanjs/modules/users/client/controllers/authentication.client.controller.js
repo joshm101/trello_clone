@@ -42,9 +42,14 @@
         console.log("$state.previous is: ", $state.previous);
 
         if (typeof $state.previous !== 'undefined') {
-          $state.go($state.previous.state.name, $state.previous.params);
+          if ($state.previous.state.name === '') {
+            $state.go('boards');
+          } else {
+            $state.go($state.previous.state.name, $state.previous.params);
+          }
         } else {
-          $state.go('home');
+
+          $state.go('/boards');
         }
 
       }).error(function (response) {
@@ -66,9 +71,14 @@
         vm.authentication.user = response;
 
         if (typeof $state.previous !== 'undefined') {
-          $state.go($state.previous.state.name, $state.previous.params);
+          if ($state.previous.state.name === '') {
+            $state.go('boards');
+          } else {
+            $state.go($state.previous.state.name, $state.previous.params);
+          }
         } else {
-          $state.go('home');
+
+          $state.go('/boards');
         }
 
       }).error(function (response) {

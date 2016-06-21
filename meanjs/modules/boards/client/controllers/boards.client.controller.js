@@ -5,8 +5,6 @@
     .controller('BoardsController', BoardsController)
     .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
       $scope.boardName = '';
-
-      // $scope.boards = '';
       $scope.close = function () {
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav('right').close()
@@ -28,7 +26,7 @@
                 // and push that new array to $scope.rows
                 console.log($scope.rows[rowsLength - 2]);
                 if ($scope.rows[rowsLength - 1].length  < 3 &&
-                    typeof $scope.rows[rowsLength - 1] !== 'undefined') {
+                  typeof $scope.rows[rowsLength - 1] !== 'undefined') {
                   $scope.rows[rowsLength - 1].push(board);
                 } else {
                   var newRow = [];
@@ -40,16 +38,63 @@
           });
       };
 
-      $scope.createBoard = function () {
-        console.log("$scope.boardName: ", $scope.boardName);
-      };
+
+
     });
-  BoardsController.$inject = ['$scope', '$mdDialog', '$mdSidenav', '$http', 'Authentication'];
-  function BoardsController ($scope, $mdDialog, $mdSidenav, $http, Authentication) {
+  BoardsController.$inject = ['$scope', '$rootScope', '$mdDialog', '$mdSidenav', '$http', 'Authentication', 'Board'];
+  function BoardsController ( $scope, $mdDialog, $mdSidenav, $http, $rootScope, Authentication, Board) {
+    var originatorEv;
+    // $scope.boards = '';
+
+
+    $scope.createBoard = function () {
+      console.log("$scope.boardName: ", $scope.boardName);
+    };
+
+
+    $scope.$on( 'boards.update', function (event) {
+
+      console.log('boards.update!!@: ', Board.boards);
+      var temp = Board.boards;
+      console.log("temp is: ", temp);
+      $scope.rows = (chunk (temp, 3));
+      console.log("$scope.rows: ", $scope.rows);
+    });
+
+    this.openMenu = function($mdOpenMenu, $event) {
+      originatorEv = $event;
+      console.log("ev openMenu: ", angular.element($event.currentTarget));
+      $mdOpenMenu($event);
+    };
+
+    $scope.showConfirm = function(ev) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this board?')
+        .ariaLabel('Lucky day')
+        .targetEvent(ev)
+        .ok('Yes')
+        .cancel('Cancel');
+      $mdDialog.show(confirm).then(function() {
+        console.log("ev: ", ev);
+        deleteBoard();
+      }, function() {
+        $scope.status = 'You decided to keep your debt.';
+      });
+    };
+
     var vm = this;
     vm.user = Authentication.user;
     console.log("vm.user is: ", vm.user);
+
     $scope.getBoards = function() {
+      Board.getBoards(vm.user);
+      // console.log("Board.boards: ", Board.boards);
+      // $scope.rows.length = 0;
+      // $scope.rows.push (chunk(Board.boards, 3));
+
+
+      /*
       console.log("vm: ", vm);
       console.log("authentication is: ", Authentication);
       if (typeof vm.user  !== undefined) {
@@ -63,6 +108,7 @@
         });
       }
       // $http.get('/api/boards/get_boards')
+       */
     };
 
     function buildToggler(navID) {
@@ -73,6 +119,9 @@
       };
     }
 
+    function deleteBoard() {
+      console.log("delete");
+    }
 
     $scope.isOpenRight = function() {
       return $mdSidenav('right').isOpen();
