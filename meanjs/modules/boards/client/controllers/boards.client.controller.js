@@ -42,7 +42,7 @@
 
     });
   BoardsController.$inject = ['$scope', '$rootScope', '$mdDialog', '$mdSidenav', '$http', 'Authentication', 'Board'];
-  function BoardsController ( $scope, $mdDialog, $mdSidenav, $http, $rootScope, Authentication, Board) {
+  function BoardsController ( $scope, $rootScope, $mdDialog, $mdSidenav, $http,  Authentication, Board) {
     var originatorEv;
     // $scope.boards = '';
 
@@ -88,6 +88,7 @@
     console.log("vm.user is: ", vm.user);
 
     $scope.getBoards = function() {
+      console.log("$mdSidenav is: ", $mdSidenav);
       Board.getBoards(vm.user);
       // console.log("Board.boards: ", Board.boards);
       // $scope.rows.length = 0;
@@ -113,6 +114,8 @@
 
     function buildToggler(navID) {
       return function() {
+        console.log("$mdSidenav is: ", $mdSidenav);
+        console.log("buildToggler ", navID);
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav(navID)
           .toggle();
