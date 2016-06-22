@@ -3,15 +3,19 @@
   angular
     .module('boards', ['ngMaterial'])
     .controller('BoardsController', BoardsController)
-    .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
+    .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, $http, Board) {
       $scope.boardName = '';
       $scope.close = function () {
         // Component lookup should always be available since we are not using `ng-if`
+        console.log("okay $scope.close");
         $mdSidenav('right').close()
           .then(function () {
+
             $log.debug("close RIGHT is done");
             console.log("$scope.boardName: ", $scope.boardName);
             if ($scope.boardName.length > 0) {
+              Board.createBoard($scope.boardName);
+              /*
               $http.post('/api/boards/create', { name: $scope.boardName } ).success(function (board, res) {
                 $scope.boardName = '';
                 console.log("response is: ", board);
@@ -33,8 +37,9 @@
                   newRow.push (board);
                   $scope.rows.push (newRow);
                 }
-              });
+              });*/
             }
+
           });
       };
 
@@ -45,6 +50,12 @@
   function BoardsController ( $scope, $rootScope, $mdDialog, $mdSidenav, $http,  Authentication, Board) {
     var originatorEv;
     // $scope.boards = '';
+
+    $scope.isOpenRight = function() {
+      return $mdSidenav('right').isOpen();
+    };
+
+    $scope.toggleRight = buildToggler('right');
 
 
     $scope.createBoard = function () {
@@ -63,12 +74,11 @@
 
     this.openMenu = function($mdOpenMenu, $event) {
       originatorEv = $event;
-      console.log("ev openMenu: ", angular.element($event.currentTarget));
+
       $mdOpenMenu($event);
     };
 
     $scope.showConfirm = function(ev) {
-      // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
         .title('Are you sure you want to delete this board?')
         .ariaLabel('Lucky day')
@@ -126,16 +136,13 @@
       console.log("delete");
     }
 
-    $scope.isOpenRight = function() {
-      return $mdSidenav('right').isOpen();
-    };
 
-    $scope.toggleRight = buildToggler('right');
 
+    /*
     $scope.close = function () {
       // Component lookup should always be available since we are not using `ng-if`
       $mdSidenav('right').close();
-    };
+    };*/
   }
 
 

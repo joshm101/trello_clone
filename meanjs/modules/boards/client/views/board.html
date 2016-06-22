@@ -1,0 +1,24 @@
+<div  flex>
+  <md-card class="md-card-single-board">
+    <div class="single-board-title">
+      <span class="md-title">
+        {{boardName}}
+      </span>
+    </div>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-menu>
+        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <md-icon md-menu-origin> more_vert </md-icon>
+        </md-button>
+        <md-menu-content width="2">
+          <md-menu-item>
+            <md-button style="color: red;" ng-click="showConfirm($event)">
+              DELETE
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </md-card-actions>
+  </md-card>
+</div>
+</div>

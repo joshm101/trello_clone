@@ -10,32 +10,41 @@
       var service = {
         boards: [],
 
-        addBoard: function (boardName) {
-          if (boardName.length > 0) {
-            $http.post('/api/boards/create', { name: boardName })
-              .success(function(board, res) {
-                service.boards.push(board);
-              });
-          }
-        },
-
         getBoards: function (user) {
           if (typeof user !== 'undefined') {
             $http.get('api/boards/get_boards', user)
               .then(function (response) {
                 console.log("response.data: ", response.data);
-                //service.boards.length = 0;
-                /*
-                for (var i = 0; i < response.data.length; ++i) {
-                  service.boards.push (response.data[i]);
-                }*/
                 service.boards = response.data;
                 console.log("service.boards: ", service.boards);
                 $rootScope.$broadcast ( 'boards.update' );
 
-
               });
           }
+        },
+
+        createBoard: function (boardName) {
+          console.log("boardName createBoard: ", boardName);
+          $http.post('/api/boards/create', { name: boardName })
+            .success(function (board, res) {
+              service.boards.push(board);
+              $rootScope.$broadcast( 'boards.update' );
+            });
+        },
+
+        deleteBoard: function(user, boardName) {
+          $http.post('/api/boards/delete_board', {user: user, boardName: boardName})
+            .success(function (res, err) {
+              console.log("res is: ", res);
+              var index;
+              for (var i = 0; i < service.boards.length; ++i) {
+                if (service.boards[i].name === boardName) {
+                  index = i;
+                }
+              }
+              service.boards.splice(index, 1);
+              $rootScope.$broadcast( 'boards.update' );
+            });
         },
 
         /*

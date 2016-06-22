@@ -3,29 +3,7 @@
 
     <div class="single-row" ng-repeat="row in rows" layout-gt-sm="row" layout-gt-xs="row"  layout-align="start center" flex="80">
       <div class="single-board" ng-repeat="board in row">
-        <div  flex>
-          <md-card class="md-card-single-board">
-              <div class="single-board-title">
-                <span class="md-title">
-                  {{board.name}}
-                </span>
-              </div>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-menu>
-                <md-button class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-                  <md-icon md-menu-origin> more_vert </md-icon>
-                </md-button>
-                <md-menu-content width="2">
-                  <md-menu-item>
-                    <md-button style="color: red;" ng-click="showConfirm($event)">
-                      DELETE
-                    </md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </md-card-actions>
-          </md-card>
-        </div>
+        <board boardName="{{board.name}}" open-menu="ctrl.openMenu($mdOpenMenu, $event)"></board>
       </div>
     </div>
   </div>

@@ -49,6 +49,28 @@ exports.getBoards = function (req, res){
   });
 };
 
+/**
+ * Delete a board
+ */
+exports.deleteBoard = function (req, res) {
+  console.log("req is: ", req.body);
+  Boards.findOne( {owner: req.body.user, name: req.body.boardName}, function (error, board) {
+    if (error) {
+      console.log("error: ", error);
+    } else {
+        console.log("boards: ", board);
+        board.remove(function (err, removed) {
+          if (err) {
+            console.log("err: ", err);
+          } else {
+            console.log("removed: ", removed);
+            return res.status(200).send(removed);
+          }
+        });
+    }
+  });
+};
+
 
 /**
  * Render the boards page

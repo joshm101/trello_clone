@@ -6,4 +6,5 @@ module.exports = function (app) {
   // API for board creation, deletion, update, etc.
   app.route('/api/boards/create').post(boards.createBoard);
   app.route('/api/boards/get_boards').get(boards.getBoards);
+  app.route('/api/boards/delete_board').post(boards.deleteBoard);
 };
