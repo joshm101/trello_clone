@@ -15,41 +15,15 @@
             console.log("$scope.boardName: ", $scope.boardName);
             if ($scope.boardName.length > 0) {
               Board.createBoard($scope.boardName);
-              /*
-              $http.post('/api/boards/create', { name: $scope.boardName } ).success(function (board, res) {
-                $scope.boardName = '';
-                console.log("response is: ", board);
-                console.log("$scope.boards: ", $scope.boards);
-                console.log("$scope.rows: ", $scope.rows);
-                var rowsLength = $scope.rows.length;
-                console.log("rowsLength: ", rowsLength);
-                // if the last array in the array of 3s
-                // does not have 3 elements, push to that
-                // last row array.
-                // else create a new array representing a new row
-                // and push that new array to $scope.rows
-                console.log($scope.rows[rowsLength - 2]);
-                if ($scope.rows[rowsLength - 1].length  < 3 &&
-                  typeof $scope.rows[rowsLength - 1] !== 'undefined') {
-                  $scope.rows[rowsLength - 1].push(board);
-                } else {
-                  var newRow = [];
-                  newRow.push (board);
-                  $scope.rows.push (newRow);
-                }
-              });*/
             }
 
           });
       };
-
-
-
     });
+
   BoardsController.$inject = ['$scope', '$rootScope', '$mdDialog', '$mdSidenav', '$http', 'Authentication', 'Board'];
   function BoardsController ( $scope, $rootScope, $mdDialog, $mdSidenav, $http,  Authentication, Board) {
     var originatorEv;
-    // $scope.boards = '';
 
     $scope.isOpenRight = function() {
       return $mdSidenav('right').isOpen();
@@ -63,8 +37,10 @@
     };
 
 
+    // when the Board service broadcasts an update,
+    // get a fresh copy of Board.boards and format
+    // the updated boards into rows.
     $scope.$on( 'boards.update', function (event) {
-
       console.log('boards.update!!@: ', Board.boards);
       var temp = Board.boards;
       console.log("temp is: ", temp);
@@ -78,21 +54,6 @@
       $mdOpenMenu($event);
     };
 
-    $scope.showConfirm = function(ev) {
-      var confirm = $mdDialog.confirm()
-        .title('Are you sure you want to delete this board?')
-        .ariaLabel('Lucky day')
-        .targetEvent(ev)
-        .ok('Yes')
-        .cancel('Cancel');
-      $mdDialog.show(confirm).then(function() {
-        console.log("ev: ", ev);
-        deleteBoard();
-      }, function() {
-        $scope.status = 'You decided to keep your debt.';
-      });
-    };
-
     var vm = this;
     vm.user = Authentication.user;
     console.log("vm.user is: ", vm.user);
@@ -100,26 +61,7 @@
     $scope.getBoards = function() {
       console.log("$mdSidenav is: ", $mdSidenav);
       Board.getBoards(vm.user);
-      // console.log("Board.boards: ", Board.boards);
-      // $scope.rows.length = 0;
-      // $scope.rows.push (chunk(Board.boards, 3));
 
-
-      /*
-      console.log("vm: ", vm);
-      console.log("authentication is: ", Authentication);
-      if (typeof vm.user  !== undefined) {
-        console.log("logged in");
-        $http.get('/api/boards/get_boards', vm.user).then(function (response) {
-          console.log("response: ", response);
-          $scope.boards = response.data;
-          $scope.rows = chunk($scope.boards, 3);
-          console.log("$scope.rows: ", $scope.rows);
-          console.log("$scope.boards: ", $scope.boards);
-        });
-      }
-      // $http.get('/api/boards/get_boards')
-       */
     };
 
     function buildToggler(navID) {
@@ -136,15 +78,7 @@
       console.log("delete");
     }
 
-
-
-    /*
-    $scope.close = function () {
-      // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav('right').close();
-    };*/
   }
-
 
   /*
    * given an array arr and a size,
