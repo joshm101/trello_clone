@@ -9,6 +9,8 @@
     function Board ($rootScope, $http) {
       var service = {
         boards: [],
+        prevBoards: [],
+        index: -1,
 
         getBoards: function (user) {
           if (typeof user !== 'undefined') {
@@ -36,15 +38,45 @@
           $http.post('/api/boards/delete_board', {user: user, boardName: boardName})
             .success(function (res, err) {
               console.log("res is: ", res);
-              var index;
-              for (var i = 0; i < service.boards.length; ++i) {
-                if (service.boards[i].name === boardName) {
-                  index = i;
-                }
-              }
-              service.boards.splice(index, 1);
+              var index = service.removeBoardIndex(boardName);
+              service.prevBoards.splice(index, 1);
               $rootScope.$broadcast( 'boards.update' );
             });
+        },
+
+        saveState: function(boardToDelete) {
+          // service.prevBoards = service.boards;
+          service.prevBoards.length = 0;
+          for (var i = 0; i < service.boards.length; ++i) {
+            service.prevBoards.push(service.boards[i]);
+          }
+          // service.prevBoards.length = 0;
+          console.log("service.prevBoards: ", service.prevBoards);
+          var index = service.removeBoardIndex(boardToDelete);
+          service.boards.splice(index, 1);
+          $rootScope.$broadcast ( 'boards.update' );
+          console.log("service.prevBoards222222: ", service.prevBoards);
+        },
+
+        restoreState: function() {
+          // service.boards = service.prevBoards;
+          service.boards.length = 0;
+          console.log("service.prevBoards: ", service.prevBoards);
+
+          for (var i = 0; i < service.prevBoards.length; ++i) {
+            service.boards.push(service.prevBoards[i]);
+          }
+          $rootScope.$broadcast( 'boards.update' );
+        },
+
+        removeBoardIndex: function (boardToRemove) {
+          var index;
+          for (var i = 0; i < service.boards.length; ++i) {
+            if (service.boards[i].name === boardToRemove) {
+              index = i;
+            }
+          }
+          return index;
         },
 
         /*

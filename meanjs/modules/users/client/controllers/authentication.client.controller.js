@@ -74,11 +74,15 @@
           if ($state.previous.state.name === '') {
             $state.go('boards');
           } else {
-            $state.go($state.previous.state.name, $state.previous.params);
+            if($state.previous.state.name !== 'home') {
+              $state.go($state.previous.state.name, $state.previous.params);
+            } else {
+              $state.go('boards');
+            }
           }
         } else {
 
-          $state.go('/boards');
+          $state.go('boards');
         }
 
       }).error(function (response) {
