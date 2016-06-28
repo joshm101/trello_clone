@@ -5,8 +5,8 @@
         {{boardName}}
       </span>
     </div>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-menu>
+    <md-card-actions layout="row" flex layout-align="center center">
+      <md-menu layout-align="end center" flex="75">
         <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
           <md-icon md-menu-origin> more_vert </md-icon>
         </md-button>
@@ -23,6 +23,9 @@
           </md-menu-item>
         </md-menu-content>
       </md-menu>
+      <md-button class="md-primary view-btn" layout-align="center center">
+        View
+      </md-button>
     </md-card-actions>
   </md-card>
 </div>

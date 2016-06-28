@@ -19,8 +19,13 @@
 
 .single-board-title{
    height: 80px;
-   padding-left: 10px;
-   padding-right: 10px;
-   padding-top: 10px;
+   padding-left: 15px;
+   padding-right: 15px;
+   padding-top: 15px;
+}
+
+.view-btn{
+   height: 40px;
+   min-width: 70px;
 }
 
