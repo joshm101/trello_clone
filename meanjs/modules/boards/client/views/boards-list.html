@@ -1,5 +1,11 @@
 <div class="boards-container" layout-align="center center" style="min-height: 400px;">
-  <div class="boards-wrapper" layout="row" layout-align="center center" style="min-height: 400px;" layout-wrap flex="100">
+  <div class="section-title" layout="row" layout-align="center center">
+    <div flex="80">
+      <h3 style="padding-left: 7px; font-weight: normal;">My Boards</h3>
+    </div>
+
+  </div>
+  <div class="boards-wrapper" layout="row" layout-align="center start" style="min-height: 400px;" layout-wrap flex="100">
 
     <div class="single-row" ng-repeat="row in rows" layout-gt-sm="row" layout-gt-xs="row"  layout-align="start center" flex="80">
       <div class="single-board" ng-repeat="board in row">
